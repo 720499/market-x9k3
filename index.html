@@ -174,6 +174,46 @@
   @media (max-width:600px){ .grid2,.review-split,.battle{grid-template-columns:1fr;}
     ul.srclist .cat{display:block; min-width:0; margin-bottom:2px;} }
 
+  /* ── Алгоритм: пошаговый flow ── */
+  .flow{margin:10px 0 0;}
+  .step{display:flex; gap:20px; padding:0 0 6px; position:relative;}
+  .step .num-col{display:flex; flex-direction:column; align-items:center; flex:0 0 auto;}
+  .step .num{font-family:'PT Serif',serif; font-weight:700; font-size:18px; color:#fff;
+    background:var(--c-accent); width:42px; height:42px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; flex:0 0 auto;}
+  .step .connector{width:2px; flex:1; background:var(--c-hairline); margin:6px 0;}
+  .step:last-child .connector{display:none;}
+  .step .body{flex:1; padding:0 0 30px;}
+  .step:last-child .body{padding-bottom:6px;}
+  .step h3{font-size:19px; margin:6px 0 8px;}
+  .step .body > p{font-size:15px; color:var(--c-body); margin:0 0 12px;}
+  .step .body > p:last-child{margin-bottom:0;}
+  .step .body b{color:var(--c-text);}
+  /* mini two-col inside a step (doctor / clinic) */
+  .step-2{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:4px 0 0;}
+  .mini{border:1px solid var(--c-hairline); border-radius:6px; padding:14px 16px;}
+  .mini h4{font-family:'PT Serif',serif; font-weight:700; font-size:15px; margin:0 0 7px; color:var(--c-text);}
+  .mini p{font-size:14px; color:var(--c-body); margin:0;}
+  /* foundation highlight callout inside a step */
+  .foundation{background:var(--c-ctx); border-left:3px solid var(--c-accent);
+    padding:14px 16px; border-radius:0 4px 4px 0; margin:4px 0 0;}
+  .foundation p{font-size:15px; margin:0;}
+  .foundation .big-pct{font-family:'PT Serif',serif; font-weight:700; color:var(--c-accent);}
+  /* pill labels (two contracts / two invoices) */
+  .pills{display:flex; flex-wrap:wrap; gap:8px; margin:4px 0 0;}
+  .pill-lbl{display:inline-block; font-family:'PT Sans',sans-serif; font-weight:700; font-size:12px;
+    letter-spacing:.03em; padding:5px 12px; border-radius:14px; border:1px solid var(--c-accent);
+    color:var(--c-accent); background:#fff;}
+  /* checklist inside a step */
+  ul.check{list-style:none; margin:6px 0 0; padding:0;}
+  ul.check li{padding:7px 0 7px 26px; position:relative; font-size:15px; color:var(--c-body); border-bottom:1px solid var(--c-hairline);}
+  ul.check li:last-child{border-bottom:none;}
+  ul.check li:before{content:"✓"; position:absolute; left:0; top:7px; color:var(--c-green); font-weight:700;}
+  ul.check li b{color:var(--c-text);}
+  .lk-closed{color:var(--c-amber); font-weight:700; font-size:13px; white-space:nowrap;}
+  @media (max-width:600px){ .step-2{grid-template-columns:1fr;}
+    .step{gap:14px;} .step .num{width:36px; height:36px; font-size:16px;} }
+
   footer.sig{padding:34px 0 60px; color:var(--c-muted); font-size:14px;}
   footer.sig b{color:var(--c-text); font-family:'PT Serif',serif;}
 
@@ -202,6 +242,7 @@
   <div class="wrap" style="display:flex; gap:0;">
     <button id="tab-btn-overview" class="active" onclick="showTab('overview')">Обзор: Призматика</button>
     <button id="tab-btn-pd" onclick="showTab('pd')">Канал: ПродокторОВ</button>
+    <button id="tab-btn-algo" onclick="showTab('algo')">📋 Алгоритм работы с ПД</button>
   </div>
 </nav>
 
@@ -727,6 +768,238 @@
 
 </div><!-- /tab-pd -->
 
+<!-- ════════ ПАНЕЛЬ 3: АЛГОРИТМ РАБОТЫ С ПД ════════ -->
+<div id="tab-algo" class="tab-panel">
+
+<!-- ALGO: интро -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Пошаговый алгоритм · с нуля до топ-1</p>
+    <h2>Как выйти в топ-1 на ПродокторОВ: 8 шагов</h2>
+    <p class="lead-p">Рабочий маршрут от регистрации до удержания топ-1. Главный принцип — не путать две битвы: общий список идёт по баллам ранжирования, а денежные списки по услугам (имплантация / брекеты / виниры) — только через платный аукцион спецразмещения. Топ-1 «по городу» = выиграть обе сразу. Все цифры — из официального help.prodoctorov.ru + сверки с внутренним маркетинг-чатом клиники и транскриптами планёрок. Где данные закрыты в личном кабинете или оферте — помечено <span class="lk-closed">[ЛК-закрыто]</span>.</p>
+    <p class="srcnote">Клиники, которые я веду, обезличены кодами А / Б. Тактика «изнутри» — внутренний источник: маркетинг-чат клиники, без раскрытия реквизитов.</p>
+  </div>
+</section>
+
+<!-- ALGO: flow -->
+<section>
+  <div class="wrap">
+    <div class="flow">
+
+      <!-- ШАГ 1 -->
+      <div class="step">
+        <div class="num-col"><span class="num">1</span><span class="connector"></span></div>
+        <div class="body">
+          <h3>Регистрация: врач и клиника отдельно</h3>
+          <p>Два разных трека регистрации. Карточка врача и страница клиники проходят модерацию независимо.</p>
+          <div class="step-2">
+            <div class="mini">
+              <h4>Врач</h4>
+              <p>Найти свою карточку → нажать «Это Вы?» → email + телефон + SMS → загрузить документы (диплом, аккредитация, фото). Модерация до суток. Подтверждение опыта (категория / степень) даёт баллы.</p>
+            </div>
+            <div class="mini">
+              <h4>Клиника</h4>
+              <p>Добавить ЛПУ в каталог (модерация до 3 дней) → «Ваша страница?» → скачать заявление → подпись + печать → загрузить. ЛК открывается до 24 ч.</p>
+            </div>
+          </div>
+          <p style="margin-top:14px;"><b>Два договора</b> — отдельные счета:</p>
+          <div class="pills">
+            <span class="pill-lbl">Лицензионный · ПО + оплата записей</span>
+            <span class="pill-lbl">Рекламный · спецразмещение + баннеры</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ШАГ 2 -->
+      <div class="step">
+        <div class="num-col"><span class="num">2</span><span class="connector"></span></div>
+        <div class="body">
+          <h3>Интеграция МИС — фундамент ранжирования</h3>
+          <p>Подключение МИС (расписание + онлайн-запись через площадку, вход в МедФлекс логином ПД). Без этого шага не открываются ключевые баллы — это база, на которой держится позиция в общем списке.</p>
+          <div class="foundation">
+            <p><span class="big-pct">≈400 из 730 баллов</span> завязаны на интеграцию МИС: онлайн-запись на услуги (100) + к врачам (100) + автовыгрузка цен (100) + успешность записи ≥75% (100). Плюс завязанные сверху — свободные ячейки и доступность. <b>Без МИС в топ не выйти.</b></p>
+          </div>
+          <p style="margin-top:14px;">⚠️ Если МИС не умеет автовыгрузку цен (например, Айдент) — цены грузятся Excel-шаблоном, но <b>баллов за это не даёт</b>.</p>
+        </div>
+      </div>
+
+      <!-- ШАГ 3 -->
+      <div class="step">
+        <div class="num-col"><span class="num">3</span><span class="connector"></span></div>
+        <div class="body">
+          <h3>Заполнение карточки</h3>
+          <p>Наполнение профиля под максимум баллов и доверия пациента.</p>
+          <ul class="check">
+            <li>Карточка клиники / врача: услуги, цены, фото, документы проверены.</li>
+            <li><b>Автовыгрузка цен</b> через МедФлекс (100 баллов) — не вручную.</li>
+            <li><b>Видеовизитка:</b> врач 9:16, 15–60 сек; клиника 1–3 мин, руководитель представляется. Без музыки, рекламы, контактов и пациентов в кадре (10 баллов).</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ШАГ 4 -->
+      <div class="step">
+        <div class="num-col"><span class="num">4</span><span class="connector"></span></div>
+        <div class="body">
+          <h3>Машина отзывов — легально</h3>
+          <p>Звёзды (рейтинг) купить нельзя — только отзывы. Поток должен быть постоянным: рейтинг устаревает (~6 мес вес падает).</p>
+          <ul class="check">
+            <li><b>«Сила отзыва»:</b> QR-полиграфия в клинике → пациент сканирует → оставляет отзыв → получает промокод <b>300 ₽ скидки</b>. За N промокодов клинике дают платное ПО «Профи» бесплатно на 90 дней.</li>
+            <li>На рейтинг влияют <b>только авторизованные</b> (подтверждён телефон) подробные отзывы. Подробный ×1.2, авторизованный ×3.</li>
+            <li>Отвечать на отзывы <b>≤24 ч</b> — молчание снижает балл и конверсию.</li>
+            <li>⚠️ Накрутка / заказ отзывов → бан. См. блок рисков ниже.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ШАГ 5 -->
+      <div class="step">
+        <div class="num-col"><span class="num">5</span><span class="connector"></span></div>
+        <div class="body">
+          <h3>Коллтрекинг — подменный номер площадки</h3>
+          <p>Свой номер указать <b>нельзя</b> — площадка выдаёт <b>подменный номер</b>. Звонки обрабатывает робот, идёт запись и транскрипт (на тарифах Стандарт / Профи).</p>
+          <p>В личном кабинете (вкладки «Запись по телефону» / «Онлайн-запись» / «Все звонки») видно: количество звонков, длительность, записи, суммы, эффективность кол-центра (минут на запись). Оплата — за <b>успешную</b> запись по телефону (лицензионный счёт).</p>
+        </div>
+      </div>
+
+      <!-- ШАГ 6 -->
+      <div class="step">
+        <div class="num-col"><span class="num">6</span><span class="connector"></span></div>
+        <div class="body">
+          <h3>Виды оплат — два независимых счёта</h3>
+          <p>Балансы не пересекаются. Лиды и ПО — один счёт, продвижение — другой.</p>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>Лицензионный счёт</th><th>Рекламный счёт</th></tr></thead>
+              <tbody>
+                <tr><td>Онлайн-запись — <b>3,7%</b> от стоимости услуги (коридор min/max по городу)</td><td>Спецразмещение — аукцион GSP (топ-3)</td></tr>
+                <tr><td>Запись по телефону (за успешную)</td><td>Баннеры (за показы)</td></tr>
+                <tr><td>Клуб ПД — сбор <b>10%</b> от клубной цены</td><td>&nbsp;</td></tr>
+                <tr><td>ПО: Лайт (беспл) / Стандарт / Профи (подписка 30 дн)</td><td>&nbsp;</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="margin-top:12px;">Точные ₽ коридора записи по Казани — <span class="lk-closed">[ЛК-закрыто]</span> (личный кабинет, «Настройки записи»; Москва/СПб дороже регионов).</p>
+        </div>
+      </div>
+
+      <!-- ШАГ 7 -->
+      <div class="step">
+        <div class="num-col"><span class="num">7</span><span class="connector"></span></div>
+        <div class="body">
+          <h3>Спецразмещение — аукцион за топ-3</h3>
+          <p>Аукцион GSP (второй цены): три высшие ставки берут места, победитель платит ставку следующего. Блок — максимум 3 места, на сутки. Рекомендованная = вчерашняя ставка 1-го места +1% (цена естественно разгоняется).</p>
+          <p class="eyebrow" style="margin-top:6px;">Рекомендованные мин. ставки по разделам · Казань, март 2026</p>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>Раздел</th><th>Реком. мин. / сутки</th></tr></thead>
+              <tbody>
+                <tr><td>Стом-услуги (общий)</td><td class="s-num">162 ₽</td></tr>
+                <tr><td>Хирург</td><td class="s-num">475 ₽</td></tr>
+                <tr><td>Ортопед</td><td class="s-num">1 374 ₽</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="margin-top:12px;"><b>Боевая ставка</b> за позицию (клиника, реальный аукцион) — <b>2 700–3 700 ₽/сут</b>, кратно выше рекомендованного минимума: аукцион разогрет.</p>
+          <ul class="check">
+            <li><b>Тайминг:</b> ставку правят ~<b>22:50 МСК</b> — аукцион считает на завтра поздно вечером, last-minute перебивка забирает позицию.</li>
+            <li><b>Стоп на сб/вс</b> — звонков нет, бюджет не жгут.</li>
+            <li>Точная мин. ставка (раздел 11 оферты) — <span class="lk-closed">[ЛК-закрыто]</span>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ШАГ 8 -->
+      <div class="step">
+        <div class="num-col"><span class="num">8</span><span class="connector"></span></div>
+        <div class="body">
+          <h3>Выход в топ-1 — две битвы одновременно</h3>
+          <p>Общий список — по баллам, денежные списки по услугам — по аукциону. Топ-1 «по городу» = обе битвы выиграны сразу.</p>
+          <div class="step-2">
+            <div class="mini">
+              <h4>Битва 1 — баллы (общий список)</h4>
+              <p>Клиника собирает до <b>730 баллов</b>, врач — до <b>770</b>. Фундамент: МИС/МедФлекс + онлайн-запись + успешность + телефон + аптайм + Клуб + видеовизитка. Звёзды (до 150) — поток отзывов через «Силу отзыва». У врача критичны первые 10 отзывов и свободные ячейки на 14 дней (ноль ячеек = 0 баллов).</p>
+            </div>
+            <div class="mini">
+              <h4>Битва 2 — аукцион (денежные услуги)</h4>
+              <p>Топ-3 по имплантации / брекетам / винирам — <b>только спецразмещение</b>, баллы тут не работают. Галка «повторять ежедневно», правка ~22:50 МСК, стоп сб/вс. В аукцион пускать врача, работающего <b>только у вас</b> (иначе лид утекает в чужую клинику через карточку).</p>
+            </div>
+          </div>
+          <p class="eyebrow" style="margin-top:18px;">Сводный чек-лист топ-1</p>
+          <ul class="check">
+            <li>Регистрация + оба договора (лицензионный + рекламный).</li>
+            <li>МИС подключена → ~400 баллов фундамента.</li>
+            <li>Автовыгрузка цен + видеовизитка + Клуб + телефон + доступность ≥15 ч.</li>
+            <li>Поток отзывов через «Силу отзыва», ответ ≤24 ч → рейтинг к 5.0.</li>
+            <li>Аукцион по денежным услугам: «повторять ежедневно», ставка ~22:50, стоп выходные.</li>
+            <li>В аукцион — только врачи, работающие исключительно у вас.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ALGO: трудности / риски -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Трудности и риски</p>
+    <h2>Где алгоритм ломается — и почему нельзя вешать загрузку только на ПД</h2>
+    <p class="lead-p">Обратная сторона площадки. Эти рычаги работают одинаково и против конкурента, и против своих клиник — учитывать при планировании канала.</p>
+    <ul class="risks">
+      <li>
+        <p class="rt">Карательная модерация — главная боль</p>
+        <p class="rd">Фейк-отзыв от конкурента (заказывается за ~1 000 ₽) → жалоба → <b>обнуление рейтинга и блок: клиника на 3 года, врач на 1 год</b> + баннер «покупала отзывы». Площадка платит жалобщику до 5 000 ₽ — это стимулирует доносы конкурентов и уволенных. Откатить нельзя (прецедент-суд в восстановлении рейтинга отказал).</p>
+      </li>
+      <li>
+        <p class="rt">Ловушка зависимости</p>
+        <p class="rd">Кейс: 45% записей через площадку → комиссию подняли до 32% → −12% маржи, отказаться уже нельзя. Красный флаг — доля агрегатора <b>выше 40%</b> записей. Плюс 30–35% отзывов отклоняются (даже реальные), а холодные лиды доходят не все.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ALGO: источники -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Источники</p>
+    <h2>Откуда взяты шаги и цифры</h2>
+    <p class="lead-p">Все шаги — из официального help.prodoctorov.ru. Ставки и тайминг — сверены с отраслевыми источниками и внутренним маркетинг-чатом клиники (без раскрытия реквизитов).</p>
+    <div class="sources">
+      <h3>Официальные · help.prodoctorov.ru</h3>
+      <ul class="srclist">
+        <li><span class="cat">Регистрация</span><span class="lk"><a href="https://help.prodoctorov.ru/kak-zaregistrirovat-svoyu-kliniku" target="_blank" rel="noopener">help.prodoctorov.ru/kak-zaregistrirovat-svoyu-kliniku</a></span></li>
+        <li><span class="cat">Баллы клиника</span><span class="lk"><a href="https://help.prodoctorov.ru/pravilaranzhirovaniya" target="_blank" rel="noopener">help.prodoctorov.ru/pravilaranzhirovaniya</a> — 730 баллов</span></li>
+        <li><span class="cat">Баллы врач</span><span class="lk"><a href="https://help.prodoctorov.ru/ballnoe-ranzhirovanie" target="_blank" rel="noopener">help.prodoctorov.ru/ballnoe-ranzhirovanie</a> — 770 баллов</span></li>
+        <li><span class="cat">Аукцион</span><span class="lk"><a href="https://help.prodoctorov.ru/specrazmeshchenie" target="_blank" rel="noopener">help.prodoctorov.ru/specrazmeshchenie</a> — спецразмещение (GSP)</span></li>
+        <li><span class="cat">Отзывы</span><span class="lk"><a href="https://help.prodoctorov.ru/sila-otzyva" target="_blank" rel="noopener">help.prodoctorov.ru/sila-otzyva</a> — «Сила отзыва»</span></li>
+        <li><span class="cat">Оплата записей</span><span class="lk"><a href="https://help.prodoctorov.ru/kak-oplachivayutsya-zapisi-na-prodoktorov" target="_blank" rel="noopener">help.prodoctorov.ru/kak-oplachivayutsya-zapisi-na-prodoktorov</a> — 3,7%</span></li>
+        <li><span class="cat">Коллтрекинг</span><span class="lk"><a href="https://help.prodoctorov.ru/zapis-po-telefonu" target="_blank" rel="noopener">help.prodoctorov.ru/zapis-po-telefonu</a> — подменный номер, аналитика звонков</span></li>
+        <li><span class="cat">Клуб ПД</span><span class="lk"><a href="https://club.prodoctorov.ru/" target="_blank" rel="noopener">club.prodoctorov.ru</a></span></li>
+      </ul>
+    </div>
+    <div class="sources">
+      <h3>Трудности и прецеденты</h3>
+      <ul class="srclist">
+        <li><span class="cat">РБК</span><span class="lk"><a href="https://companies.rbc.ru/news/5ayDxREK5r/" target="_blank" rel="noopener">companies.rbc.ru</a> — модерация, &gt;350к отклонённых отзывов</span></li>
+        <li><span class="cat">Коммерсантъ</span><span class="lk"><a href="https://www.kommersant.ru/doc/8651655" target="_blank" rel="noopener">kommersant.ru/doc/8651655</a> — суд об обнулении рейтинга</span></li>
+        <li><span class="cat">Ловушка</span><span class="lk"><a href="https://medbusiness.space/" target="_blank" rel="noopener">medbusiness.space</a> — зависимость от агрегатора, комиссия</span></li>
+      </ul>
+    </div>
+    <div class="sources">
+      <h3>Эксперты и обновления (Telegram)</h3>
+      <ul class="srclist">
+        <li><span class="cat">Эксперт</span><span class="lk"><a href="https://t.me/kiyaeve" target="_blank" rel="noopener">@kiyaeve</a> — трудности и ставки канала, кейсы банов</span></li>
+        <li><span class="cat">Площадка</span><span class="lk"><a href="https://t.me/medroket" target="_blank" rel="noopener">@medroket</a> — офиц. канал МедРокет: алгоритм и аукцион</span></li>
+      </ul>
+    </div>
+    <p class="srcnote" style="margin-top:16px;">Тактика «изнутри» (боевые ставки 2 700–3 700 ₽, тайминг 22:50, правило выходных) — внутренний источник: маркетинг-чат клиники + транскрипты планёрок. Реквизиты канала, личные контакты и id чата не раскрываются. Клиники, которые я веду, обезличены кодами А / Б. Где данные закрыты — помечено <span class="lk-closed">[ЛК-закрыто]</span>, не выдумано.</p>
+  </div>
+</section>
+
+</div><!-- /tab-algo -->
+
 <footer class="sig">
   <div class="wrap">
     <b>Конкурент-разведка для внутреннего пользования</b> · бизнес-трекинг стоматологических клиник<br>
@@ -750,7 +1023,7 @@ function showTab(id){
 // open tab from hash on load (#pd / #overview)
 (function(){
   var h=(location.hash||'').replace('#','');
-  if(h==='pd'||h==='overview') showTab(h);
+  if(h==='pd'||h==='overview'||h==='algo') showTab(h);
 })();
 </script>
 
