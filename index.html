@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Разбор конкурента: как Призматика грузит 11 кресел без Директа</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --c-text:#1A1A1A; --c-body:#2C2C2C; --c-muted:#666666;
+    --c-bg:#FFFFFF; --c-accent:#0B1F3A; --c-hairline:#E5E5E5;
+    --c-rule:#CCCCCC; --c-ctx:#F7F7F7;
+    --c-red:#B23A2E; --c-redbg:#FBF2F0; --c-amber:#B5781F; --c-green:#2E6B3E;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{margin:0; background:var(--c-bg); color:var(--c-body);
+    font-family:'PT Sans',sans-serif; font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:860px; margin:0 auto; padding:0 24px;}
+  h1,h2,h3{font-family:'PT Serif',serif; color:var(--c-text); font-weight:700; letter-spacing:-0.01em;}
+  h1{font-size:34px; line-height:1.18; margin:0 0 14px;}
+  h2{font-size:25px; line-height:1.25; margin:0 0 6px;}
+  h3{font-size:18px; margin:0 0 6px;}
+  p{margin:0 0 14px;}
+  a{color:var(--c-accent); text-decoration:none; border-bottom:1px solid rgba(11,31,58,.25);}
+  a:hover{border-bottom-color:var(--c-accent);}
+  .eyebrow{font-family:'PT Sans',sans-serif; font-weight:700; font-size:12px; text-transform:uppercase;
+    letter-spacing:0.14em; color:var(--c-accent); margin:0 0 12px;}
+
+  header.hero{padding:64px 0 40px; border-bottom:1px solid var(--c-rule);}
+  .hero .meta{font-size:15px; color:var(--c-muted); margin:0;}
+  .hero .lead{font-size:18px; color:var(--c-body); margin:18px 0 0; max-width:720px;}
+  .hero .stamp{display:inline-block; margin-top:22px; font-size:14px; color:var(--c-muted);
+    border-left:2px solid var(--c-accent); padding:4px 0 4px 14px;}
+
+  section{padding:42px 0; border-bottom:1px solid var(--c-hairline);}
+  section:last-of-type{border-bottom:none;}
+  .lead-p{font-size:17px; color:var(--c-body); margin:0 0 22px; max-width:730px;}
+
+  ul.clean{list-style:none; margin:0; padding:0;}
+  ul.clean li{padding:14px 0; border-bottom:1px solid var(--c-hairline); display:flex; gap:16px;}
+  ul.clean li:last-child{border-bottom:none;}
+  ul.clean .n{font-family:'PT Serif',serif; font-weight:700; color:var(--c-accent); font-size:15px; min-width:128px;}
+  ul.clean .t{flex:1;} ul.clean .t b{color:var(--c-text);}
+
+  .tablewrap{overflow-x:auto; margin:0 -2px;}
+  table{width:100%; border-collapse:collapse; font-size:15px; min-width:560px;}
+  th,td{text-align:left; padding:11px 12px; border-bottom:1px solid var(--c-hairline); vertical-align:top;}
+  th{font-family:'PT Sans',sans-serif; font-weight:700; color:var(--c-text); font-size:12px;
+    text-transform:uppercase; letter-spacing:0.08em; border-bottom:1.5px solid var(--c-rule);}
+  td.s-strong{color:var(--c-accent); font-weight:700; white-space:nowrap;}
+  td.s-num{color:var(--c-text); font-weight:700; white-space:nowrap;}
+
+  /* source pills */
+  .src-pill{display:inline-block; font-family:'PT Sans',sans-serif; font-weight:700; font-size:11px;
+    letter-spacing:.04em; padding:2px 8px; border-radius:10px; white-space:nowrap; vertical-align:middle;}
+  .src-azat{background:#EAF0F7; color:#1E4C82;}
+  .src-parf{background:#EDF4EE; color:#2E6B3E;}
+  .src-vlad{background:#F4EFE6; color:#8A6314;}
+  .src-2{background:#E7F0E9; color:#1F5C30;}
+  .srcnote{font-size:13px; color:var(--c-muted); margin-top:4px;}
+
+  /* KPI bar */
+  .kpis{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin:6px 0 4px;}
+  .kpi{border:1px solid var(--c-hairline); border-radius:6px; padding:16px 18px;}
+  .kpi .big{font-family:'PT Serif',serif; font-weight:700; color:var(--c-accent); font-size:26px; line-height:1.1;}
+  .kpi .lbl{font-size:13px; color:var(--c-muted); text-transform:uppercase; letter-spacing:.06em; margin:4px 0 8px;}
+  .kpi .meta{font-size:13px; color:var(--c-body); margin:0;}
+
+  /* mechanics ranked bars */
+  .mech{margin:6px 0 4px;}
+  .mech-row{padding:13px 0; border-bottom:1px solid var(--c-hairline);}
+  .mech-row:last-child{border-bottom:none;}
+  .mech-head{display:flex; align-items:baseline; gap:10px; margin-bottom:6px;}
+  .mech-head .rank{font-family:'PT Serif',serif; font-weight:700; color:var(--c-muted); font-size:14px; min-width:22px;}
+  .mech-head .name{font-family:'PT Serif',serif; font-weight:700; color:var(--c-text); font-size:17px; flex:1;}
+  .mech-head .vol{font-size:12px; color:var(--c-muted); text-transform:uppercase; letter-spacing:.05em;}
+  .mech-track{height:10px; background:#EEF1F4; border-radius:5px; overflow:hidden; margin-bottom:7px;}
+  .mech-fill{height:100%; background:var(--c-accent); border-radius:5px;}
+  .mech-desc{font-size:14px; color:var(--c-body); margin:0;}
+
+  /* budget chart */
+  .chart{display:flex; align-items:flex-end; gap:14px; height:190px; margin:14px 0 6px; padding-top:10px;}
+  .chart .col{flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%;}
+  .chart .bar{width:64%; max-width:54px; background:var(--c-accent); border-radius:3px 3px 0 0;}
+  .chart .val{font-size:13px; font-weight:700; color:var(--c-text); margin-bottom:5px;}
+  .chart .lab{font-size:12px; color:var(--c-muted); margin-top:7px; text-align:center; line-height:1.3;}
+  .legend{font-size:14px; color:var(--c-muted); margin:2px 0 18px;}
+
+  /* red bottleneck block */
+  .danger{background:var(--c-redbg); border-left:3px solid var(--c-red); padding:22px 24px; margin:8px 0 0; border-radius:0 4px 4px 0;}
+  .danger .eyebrow{color:var(--c-red);} .danger h2{color:var(--c-red); margin-top:0;} .danger p:last-child{margin-bottom:0;}
+  .danger .pull{font-family:'PT Serif',serif; font-style:italic; font-size:20px; color:var(--c-text); margin:0 0 14px; line-height:1.35;}
+
+  .ctx{background:var(--c-ctx); border-left:3px solid var(--c-accent); padding:22px 24px; margin:8px 0 0;}
+  .ctx h2{margin-top:0;} .ctx p:last-child{margin-bottom:0;}
+
+  /* take-vs-beat two columns */
+  .cols2{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:6px;}
+  .card{border:1px solid var(--c-hairline); border-radius:6px; padding:18px 20px;}
+  .card.take{border-top:3px solid var(--c-green);}
+  .card.beat{border-top:3px solid var(--c-amber);}
+  .card h3{margin-bottom:10px;}
+  .card.take h3{color:var(--c-green);} .card.beat h3{color:var(--c-amber);}
+  .card ul{margin:0; padding-left:18px;} .card li{margin:0 0 9px; font-size:15px;} .card li:last-child{margin-bottom:0;}
+  .card li b{color:var(--c-text);}
+
+  .note-strong{margin-top:18px; font-size:15px; color:var(--c-muted);}
+  .note-strong b{color:var(--c-text);}
+
+  footer.sig{padding:34px 0 60px; color:var(--c-muted); font-size:14px;}
+  footer.sig b{color:var(--c-text); font-family:'PT Serif',serif;}
+
+  @media (max-width:600px){
+    body{font-size:16px;} h1{font-size:26px;} h2{font-size:21px;}
+    header.hero{padding:44px 0 30px;}
+    ul.clean li{flex-direction:column; gap:2px;} ul.clean .n{min-width:0;}
+    .kpis{grid-template-columns:1fr;} .cols2{grid-template-columns:1fr;}
+    .chart .lab{font-size:11px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Конкурент-разведка · для внутреннего пользования</p>
+    <h1>Разбор: как «Призматика» грузит 11 кресел без Директа и таргета</h1>
+    <p class="meta">Казань · prismatica-clinic.ru · разведка на 13 июня 2026</p>
+    <p class="lead">Призматика — публичный конкурент стоматологий, которые я веду. Собрал по открытым следам и по тому, что их маркетолог сам рассказал в профильном чате: как устроена их машина загрузки, почему она крутится без аукционной рекламы и где у них узкое место. Фокус разбора — «как это работает у них», а не «что продать клиенту».</p>
+    <span class="stamp">У каждой цифры — пометка источника. Где это оценка, а не факт, так и написано.</span>
+  </div>
+</header>
+
+<!-- 1. ПАСПОРТ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Паспорт</p>
+    <h2>Одна локация, 11 кресел, рост на 16. Запущена в 2024</h2>
+    <p class="lead-p">Крупная моноклиника на одной площадке с акцентом на имплантацию и учебный центр. Молодая (с 2024), но уже с тяжёлой инфраструктурой и собственной зуботехлабораторией.</p>
+    <ul class="clean">
+      <li><span class="n">Масштаб</span><span class="t"><b>11 кресел, «скоро 16»</b>. 32–33 врача, 70+ персонала. Одна локация на ул. Альберта Камалеева, 34В (ЖК «21 Век»), 2 этажа. <span class="src-pill src-2">Парфёнов публ. + Владимир</span></span></li>
+      <li><span class="n">Основатель</span><span class="t"><b>Парфёнов Сергей Валерьевич</b> — главврач, имплантолог (КГМУ 2012, ЧЛХ). Позиционируется как «крупнейший блог об имплантации в РТ». Зам по медчасти — Расулова А. О.</span></li>
+      <li><span class="n">Инфраструктура</span><span class="t">Своя зуботехлаборатория, 3 микроскопа, 2 интраоральных сканера, КТ, учебный центр (партнёрство с КГМУ), оперблок в планах.</span></li>
+      <li><span class="n">Юрлица</span><span class="t">ООО «ИМПЛАНТ» (операционное) + ООО «ПРИЗМАТИКА» (зарег. 29.01.2026). Сайт <a href="https://prismatica-clinic.ru" target="_blank" rel="noopener">prismatica-clinic.ru</a>.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 2. ЦИФРЫ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Цифры</p>
+    <h2>Бюджет ~2 млн, ДРР 4%, ~328 первичек в месяц</h2>
+    <p class="lead-p">Основной массив цифр — дословно от их маркетолога (он же «Азат») в профильном чате, март–май 2026. Часть совпадает с независимой оценкой Владимира — тогда стоят две пометки. По выручке источники расходятся, поэтому привожу оба значения и не усредняю.</p>
+
+    <div class="kpis">
+      <div class="kpi">
+        <div class="big">1,7–2 млн ₽</div>
+        <div class="lbl">бюджет маркетинга / мес</div>
+        <p class="meta"><span class="src-pill src-2">Азат + Владимир</span></p>
+      </div>
+      <div class="kpi">
+        <div class="big">4 %</div>
+        <div class="lbl">ДРР (держат до 5%)</div>
+        <p class="meta"><span class="src-pill src-azat">Азат дословно</span></p>
+      </div>
+      <div class="kpi">
+        <div class="big">~328 / мес</div>
+        <div class="lbl">первичных пациентов</div>
+        <p class="meta">96% плана (цель 340; янв ~317) &nbsp;<span class="src-pill src-azat">Азат дословно</span></p>
+      </div>
+      <div class="kpi">
+        <div class="big">40–50 / 30–40 млн</div>
+        <div class="lbl">выручка / мес — расхождение</div>
+        <p class="meta">40–50 (расчёт Азата через ДРР) <span class="src-pill src-azat">Азат</span> &nbsp;vs&nbsp; 30–40 <span class="src-pill src-vlad">оценка Владимира</span></p>
+      </div>
+    </div>
+    <p class="srcnote">Выручка не усреднена намеренно: расхождение между расчётом маркетолога и оценкой Владимира — это сама по себе находка, а не повод вывести среднее.</p>
+
+    <p class="note-strong"><b>Ключевой факт:</b> «маркетинг без директа и таргета» — подтверждено дословно маркетологом. Важная оговорка: «без Директа» ≠ «без платного». Они платят за позиции, карточки и SEO, просто не покупают аукционные клики.</p>
+  </div>
+</section>
+
+<!-- 3. МОДЕЛЬ ЗАГРУЗКИ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Модель загрузки без лидгена</p>
+    <h2>7 механик. Покупка полок, а не аукциона</h2>
+    <p class="lead-p">Главный принцип: деньги идут в высоконамеренный органический трафик, а не в клики Директа. Пациент уже ищет «имплантация рядом» — и везде, где он смотрит, стоит карточка с рейтингом 5.0 на тысячах отзывов. Ниже механики выстроены по убыванию объёма первички (порядок — дословно от их маркетолога).</p>
+
+    <div class="mech">
+      <div class="mech-row">
+        <div class="mech-head"><span class="rank">1</span><span class="name">Гео-доминирование</span><span class="vol">главный объём</span></div>
+        <div class="mech-track"><div class="mech-fill" style="width:100%"></div></div>
+        <p class="mech-desc">Приоритет-карточки 2ГИС / Яндекс.Карты / Google (платно, но не аукцион) + рейтинг 5.0 на тысячах отзывов. Пациент с намерением «ищу рядом» выбирает их по умолчанию.</p>
+      </div>
+      <div class="mech-row">
+        <div class="mech-head"><span class="rank">2</span><span class="name">Агрегаторы</span><span class="vol">второй по объёму</span></div>
+        <div class="mech-track"><div class="mech-fill" style="width:78%"></div></div>
+        <p class="mech-desc">ПроДокторов (ТОП-1 РТ, ~1590 отзывов), 32top («№1 по имплантации»), СберЗдоровье. Высоконамеренный трафик на стадии выбора клиники.</p>
+      </div>
+      <div class="mech-row">
+        <div class="mech-head"><span class="rank">3</span><span class="name">SEO</span><span class="vol">мин ДРР / макс ROMI</span></div>
+        <div class="mech-track"><div class="mech-fill" style="width:58%"></div></div>
+        <p class="mech-desc">165к/мес в гео-кластеры и контент-блог. По их словам — «самый маленький ДРР и самый большой ROMI» из всех каналов.</p>
+      </div>
+      <div class="mech-row">
+        <div class="mech-head"><span class="rank">4</span><span class="name">SMM</span><span class="vol">доверие / бренд</span></div>
+        <div class="mech-track"><div class="mech-fill" style="width:46%"></div></div>
+        <p class="mech-desc">200к/мес + собственный SMM-отдел. Работает на узнаваемость и прогрев, а не на прямой лидген.</p>
+      </div>
+      <div class="mech-row">
+        <div class="mech-head"><span class="rank">5</span><span class="name">SERM-машина</span><span class="vol">самогенерящийся поток</span></div>
+        <div class="mech-track"><div class="mech-fill" style="width:42%"></div></div>
+        <p class="mech-desc">Системный сбор отзывов (скидка за отзыв) + ответ на каждый отзыв. Это и есть мотор, который держит рейтинг 5.0 и подпитывает механики 1–2.</p>
+      </div>
+      <div class="mech-row">
+        <div class="mech-head"><span class="rank">6</span><span class="name">Личный бренд врачей-звёзд</span><span class="vol">точки входа</span></div>
+        <div class="mech-track"><div class="mech-fill" style="width:34%"></div></div>
+        <p class="mech-desc">Парфёнов (блог имплантации), Вагабов, Халилзаде — узнаваемые врачи как отдельные точки входа в клинику.</p>
+      </div>
+      <div class="mech-row">
+        <div class="mech-head"><span class="rank">7</span><span class="name">Сарафан + кураторы</span><span class="vol">удержание / LTV</span></div>
+        <div class="mech-track"><div class="mech-fill" style="width:28%"></div></div>
+        <p class="mech-desc">Рекомендации, повторные визиты, иногородние «по рекомендации». Работает на LTV и достройку потока, а не на первый контакт.</p>
+      </div>
+    </div>
+    <p class="legend">Длина полос — относительный вклад в объём первички (порядок каналов — дословно от их маркетолога; пропорции — визуализация, не точные доли).</p>
+  </div>
+</section>
+
+<!-- 4. РАСКЛАДКА БЮДЖЕТА -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Раскладка бюджета</p>
+    <h2>Куда уходят ~2 млн в месяц</h2>
+    <p class="lead-p">Дословная раскладка от их маркетолога. По 2ГИС названо два числа: базовая карточка 150к и приоритет (1–8 место) 220к — привожу оба, ниже на диаграмме показан приоритет как фактический потолок.</p>
+    <div class="chart">
+      <div class="col"><span class="val">220к</span><div class="bar" style="height:100%"></div><span class="lab">2ГИС<br>(приоритет 1–8)</span></div>
+      <div class="col"><span class="val">200к</span><div class="bar" style="height:91%"></div><span class="lab">SMM</span></div>
+      <div class="col"><span class="val">165к</span><div class="bar" style="height:75%"></div><span class="lab">SEO</span></div>
+      <div class="col"><span class="val">40к</span><div class="bar" style="height:18%"></div><span class="lab">Яндекс<br>Карты</span></div>
+    </div>
+    <p class="legend"><span class="src-pill src-azat">Азат дословно</span> &nbsp; SEO 165к · SMM 200к · 2ГИС 150к (базово) → 220к (приоритет 1–8 место) · Яндекс.Карты 30–40к · плюс подрядчики. Остаток до ~2 млн — на агрегаторы, контент и подряд.</p>
+  </div>
+</section>
+
+<!-- 5. FOOTPRINT -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Footprint</p>
+    <h2>Где их видно и какой там сигнал</h2>
+    <p class="lead-p">Публичный след по площадкам. Главный актив — тысячи отзывов с рейтингом 5.0 и ТОП-1 в Татарстане на ПроДокторов. Все цифры — публичные счётчики площадок, могут немного отличаться от даты сбора.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Канал</th><th>Сигнал</th><th>Что там</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://prodoctorov.ru/" target="_blank" rel="noopener">ПроДокторов</a></td><td class="s-strong">флагман</td><td>~1590 отзывов · 5.0 · ТОП-1 РТ · 32 врача · отвечают на каждый отзыв</td></tr>
+          <tr><td><a href="https://2gis.ru/kazan" target="_blank" rel="noopener">2ГИС</a></td><td class="s-num">сильно</td><td>~1280 оценок · 5.0 · платная карточка (акция −5000₽ на имплантацию)</td></tr>
+          <tr><td>Яндекс.Карты</td><td class="s-num">сильно</td><td>~1022 оценки · 5.0 · качество 99% · импланты 99%</td></tr>
+          <tr><td><a href="https://www.32top.ru/" target="_blank" rel="noopener">32top</a></td><td class="s-num">сильно</td><td>277 отзывов · 5.0 · «№1 по имплантации 2026»</td></tr>
+          <tr><td><a href="https://prismatica-clinic.ru" target="_blank" rel="noopener">Сайт</a></td><td class="s-num">контент-машина</td><td>блог 1–2/нед, кейсы до/после, оффер «имплантация без боли + рассрочка 0%», лид-форма «3 плана за визит»</td></tr>
+          <tr><td><a href="https://t.me/prismaticaclinic" target="_blank" rel="noopener">Telegram</a></td><td class="s-num">конвертер</td><td>~610 подписчиков (мало!), но: flash-акции «30 мин», кодовое слово «ХОЧУ», PR врачей</td></tr>
+          <tr><td>ВК / Instagram / YouTube</td><td class="s-num">пробел</td><td>ссылки есть, контент через автопарсинг не извлёкся — добрать прямым заходом</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note-strong">Перекос характерный: Telegram у них слабый (610 подписчиков), но это не лидген-канал, а конвертер уже прогретых. Поток держат гео-сервисы и агрегаторы, а не соцсети.</p>
+  </div>
+</section>
+
+<!-- 6. УЗКОЕ МЕСТО -->
+<section>
+  <div class="wrap danger">
+    <p class="eyebrow">Узкое место</p>
+    <h2>В записи норм, в приход — упала</h2>
+    <p class="pull">«В записи норм, в приход упала ппц» — их маркетолог, февраль 2026.</p>
+    <p>Их сила — привлечение через рейтинги и карточки. Их слабость — конверсия «запись → приём» и удержание. То есть машина отлично наливает заявки и записи, но дальше по воронке течёт.</p>
+    <p>Ручной стек напоминаний (ТГ-бот + МАКС + СМС + обзвон + «Забота»/loyalmed на Айденте) ломается из-за блокировок МАКС и WhatsApp. Сами ищут систему лояльности вне мессенджеров (loyme.io). Свой SMM-отдел при этом подрабатывает консалтингом — то есть фокус частично уходит вовне.</p>
+    <p><b>Важная параллель:</b> это то же самое узкое место, что и у клиник Владимира (Дентариз). Никто на рынке пока не закрыл «доходимость + удержание» системно. Кто закроет первым — забирает разницу на том же входящем потоке. Для нас это не угроза, а карта, где у сильного конкурента дыра.</p>
+  </div>
+</section>
+
+<!-- 7. ВЫВОДЫ ДЛЯ НАС -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Выводы для нас</p>
+    <h2>Что перенять, где обойти</h2>
+    <p class="lead-p">Призматика выиграла верх воронки (привлечение) и проседает на низе (доходимость, удержание). Стратегия зеркальная: повторить их сильную часть и забрать рынок на их слабой.</p>
+    <div class="cols2">
+      <div class="card take">
+        <h3>Перенять</h3>
+        <ul>
+          <li><b>Гео-SEO как ядро.</b> Деньги в позиции и карточки (2ГИС/Карты/Google + SEO-кластеры), а не в аукционные клики Директа. У них ДРР держится на 4%.</li>
+          <li><b>SERM-машину.</b> Системный сбор отзывов (скидка за отзыв) + ответ на каждый. Это самогенерящийся мотор рейтинга 5.0 — без него гео-доминирование не работает.</li>
+          <li><b>Покупка полок.</b> Высоконамеренный органический трафик масштабируется дешевле и стабильнее, чем выкуп кликов.</li>
+        </ul>
+      </div>
+      <div class="card beat">
+        <h3>Где обойти</h3>
+        <ul>
+          <li><b>Доходимость (запись → приём).</b> Их прямое признание «в приход упала». Системное подтверждение записи и работа администраторов = чистый рост на том же потоке.</li>
+          <li><b>Удержание / LTV.</b> Их ручной стек напоминаний рассыпается из-за блокировок мессенджеров. Устойчивая система лояльности и реактивации базы — наша зона.</li>
+          <li><b>Фокус.</b> Их SMM-отдел распыляется на консалтинг. Сфокусированная воронка против распылённой команды — преимущество.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note-strong"><b>Одной строкой:</b> повторяем их машину привлечения (гео-SEO + SERM), выигрываем на их же узком месте — доходимости и удержании.</p>
+  </div>
+</section>
+
+<!-- ИТОГ -->
+<section>
+  <div class="wrap ctx">
+    <p class="eyebrow">Итог</p>
+    <h2>Сильный конкурент с понятной дырой</h2>
+    <p>Призматика — образец того, как грузить большую клинику без Директа: гео-доминирование на тысячах отзывов, агрегаторы, SEO с минимальным ДРР, SERM-мотор. Это работает и масштабируется. Но узкое место у них то же, что у нас: входящий поток есть, а доходимость и удержание текут. Их верх воронки — наш чек-лист, что повторить. Их низ воронки — наша точка, где их можно обойти на том же рынке.</p>
+  </div>
+</section>
+
+<footer class="sig">
+  <div class="wrap">
+    <b>Конкурент-разведка для внутреннего пользования</b> · бизнес-трекинг стоматологических клиник<br>
+    Собрано по открытым данным площадок и публичным сообщениям их маркетолога в профильном чате на 13 июня 2026. Цифры с пометкой «оценка» — экспертная оценка, не факт. Счётчики отзывов могут отличаться на несколько штук от даты сбора. Не для публикации.
+  </div>
+</footer>
+
+</body>
+</html>
