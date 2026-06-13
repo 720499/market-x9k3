@@ -214,6 +214,33 @@
   @media (max-width:600px){ .step-2{grid-template-columns:1fr;}
     .step{gap:14px;} .step .num{width:36px; height:36px; font-size:16px;} }
 
+  /* ── Карта материалов (навигатор «где что лежит») ── */
+  .maprow{display:grid; grid-template-columns:1fr; gap:14px; margin:6px 0 4px;}
+  .mapcard{border:1px solid var(--c-hairline); border-radius:6px; padding:18px 20px;}
+  .mapcard.web{border-left:3px solid var(--c-accent);}
+  .mapcard.repo{border-left:3px solid var(--c-green);}
+  .mapcard.lk{border-left:3px solid var(--c-red);}
+  .mapcard.skill{border-left:3px solid var(--c-amber);}
+  .mapcard h3{font-size:17px; margin:0 0 4px;}
+  .mapcard .where{font-size:13px; color:var(--c-muted); margin:0 0 12px;}
+  .mapcard .where b{color:var(--c-body);}
+  ul.maplist{list-style:none; margin:0; padding:0;}
+  ul.maplist li{padding:11px 0; border-bottom:1px solid var(--c-hairline); display:flex; gap:14px; align-items:baseline;}
+  ul.maplist li:last-child{border-bottom:none;}
+  ul.maplist .what{font-family:'PT Serif',serif; font-weight:700; color:var(--c-text); font-size:15px; flex:0 0 38%; max-width:38%;}
+  ul.maplist .for{flex:1; font-size:14px; color:var(--c-body);}
+  ul.maplist code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12.5px;
+    background:var(--c-ctx); padding:1px 5px; border-radius:3px; color:var(--c-text); word-break:break-word;}
+  .map-note{font-size:13px; color:var(--c-muted); margin-top:14px;}
+  .map-note b{color:var(--c-body);}
+  .nda-flag{display:inline-block; font-family:'PT Sans',sans-serif; font-weight:700; font-size:10.5px;
+    letter-spacing:.05em; padding:2px 7px; border-radius:10px; background:var(--c-redbg); color:var(--c-red);
+    vertical-align:middle; margin-left:6px;}
+  @media (max-width:600px){
+    ul.maplist li{flex-direction:column; gap:3px;}
+    ul.maplist .what{flex-basis:auto; max-width:none;}
+  }
+
   footer.sig{padding:34px 0 60px; color:var(--c-muted); font-size:14px;}
   footer.sig b{color:var(--c-text); font-family:'PT Serif',serif;}
 
@@ -243,6 +270,7 @@
     <button id="tab-btn-overview" class="active" onclick="showTab('overview')">Обзор: Призматика</button>
     <button id="tab-btn-pd" onclick="showTab('pd')">Канал: ПродокторОВ</button>
     <button id="tab-btn-algo" onclick="showTab('algo')">📋 Алгоритм работы с ПД</button>
+    <button id="tab-btn-map" onclick="showTab('map')">📂 Материалы</button>
   </div>
 </nav>
 
@@ -424,6 +452,42 @@
       </div>
     </div>
     <p class="note-strong"><b>Одной строкой:</b> повторяем их машину привлечения (гео-SEO + SERM), выигрываем на их же узком месте — доходимости и удержании.</p>
+  </div>
+</section>
+
+<!-- 8. ЧЕМ СИЛЬНЕЕ / ДОГОНЯЕМО (публичные выводы сравнения) -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Сравнение · что у них сильнее</p>
+    <h2>Чем Призматика сильнее — и что из этого догоняемо</h2>
+    <p class="lead-p">Если убрать эмоции и смотреть на активы — у них четыре опоры. Все четыре строятся не талантом и не уникальной фишкой, а двумя процессами: машиной отзывов и полной обвязкой карточки. Это значит, что преимущество не врождённое, а наработанное — а раз наработанное, то воспроизводимое.</p>
+    <div class="kpis">
+      <div class="kpi">
+        <div class="big">~1 590</div>
+        <div class="lbl">отзывов на ПродокторОВ</div>
+        <p class="meta">машина сбора добавляет ~100/мес против рыночной нормы 10–15</p>
+      </div>
+      <div class="kpi">
+        <div class="big">9 медалей</div>
+        <div class="lbl">премии площадки ПД</div>
+        <p class="meta">витрина доверия в карточке — следствие потока отзывов, не отдельная заслуга</p>
+      </div>
+      <div class="kpi">
+        <div class="big">ТОП-4</div>
+        <div class="lbl">органически, без аукциона</div>
+        <p class="meta">высокий балл ранжирования вытягивает их в верх общего списка</p>
+      </div>
+      <div class="kpi">
+        <div class="big">100 %</div>
+        <div class="lbl">обвязка карточки</div>
+        <p class="meta">онлайн-запись, автовыгрузка цен, видеовизитка, ответы на отзывы, Клуб ПД</p>
+      </div>
+    </div>
+    <div class="ctx" style="margin-top:24px;">
+      <p class="eyebrow">Вывод сравнения</p>
+      <p class="quote-block">Ничего из этого не уникально. Всё догоняемо машиной отзывов плюс полной обвязкой карточки.</p>
+      <p style="margin-bottom:0;">Ни один из их активов не защищён патентом, брендом или эксклюзивом. Отзывы набираются процессом (скидка за отзыв + сервисный обзвон + QR), медали и топ-позиция — производные от этого же потока и от закрытой обвязки карточки. Нашим клиникам, чтобы встать рядом, нужно добрать ровно две вещи: <b>обвязку карточки и поток отзывов</b>. Это вопрос дисциплины процесса, а не догоняющего бюджета.</p>
+    </div>
   </div>
 </section>
 
@@ -618,7 +682,7 @@
       <div class="kpi">
         <div class="big">27–59 / мес</div>
         <div class="lbl">лидов (А): без СП → пик с СП</div>
-        <p class="meta">бюджет ~100к/мес, балл 370/730</p>
+        <p class="meta">бюджет ~100к/мес, балл недобран до потолка</p>
       </div>
       <div class="kpi">
         <div class="big">~2 000 ₽</div>
@@ -1000,6 +1064,108 @@
 
 </div><!-- /tab-algo -->
 
+<!-- ════════ ПАНЕЛЬ 4: КАРТА МАТЕРИАЛОВ (навигатор «где что лежит») ════════ -->
+<div id="tab-map" class="tab-panel">
+
+<!-- MAP: интро -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Карта направления · навигатор</p>
+    <h2>Где что лежит по конкурент-разведке ПД</h2>
+    <p class="lead-p">Справка-навигатор по всем артефактам направления: веб-страницы, своды в репозитории, доступ к личному кабинету и скилл. Это карта для ориентации, а не кликабельные внешние ссылки — внутренние пути приведены как справка, где искать.</p>
+  </div>
+</section>
+
+<!-- MAP: ВЕБ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Веб · опубликованные страницы</p>
+    <h2>Что выложено в интернет</h2>
+    <div class="maprow">
+      <div class="mapcard web">
+        <h3>Этот разбор Призматики</h3>
+        <p class="where">репо <b>720499/market-x9k3</b> · GitHub Pages · noindex · 4 вкладки</p>
+        <ul class="maplist">
+          <li><span class="what">Обзор: Призматика</span><span class="for">паспорт, цифры, модель загрузки, footprint, узкое место, что перенять / где обойти + сравнение «чем сильнее»</span></li>
+          <li><span class="what">Канал: ПродокторОВ</span><span class="for">механика рейтинга и аукциона, детектор платных участников, отзывы, риски, выход в топ-1</span></li>
+          <li><span class="what">Алгоритм работы с ПД</span><span class="for">пошаговый маршрут с нуля до топ-1: 8 шагов</span></li>
+          <li><span class="what">Материалы</span><span class="for">эта карта — где что лежит по всему направлению</span></li>
+        </ul>
+      </div>
+      <div class="mapcard web">
+        <h3>Веб-ШТАБ</h3>
+        <p class="where">репо <b>nk-funnel-q7x2</b> · <code>shtab.html</code> → раздел «Анализы клиник»</p>
+        <ul class="maplist">
+          <li><span class="what">Анализы клиник</span><span class="for">общий штаб бизнес-трекинга; этот разбор конкурента подвязан как один из анализов</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP: СВОДЫ В РЕПО -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Своды · репозиторий</p>
+    <h2>Текстовые своды разведки (внутренние пути)</h2>
+    <div class="maprow">
+      <div class="mapcard repo">
+        <h3>Каталог разведки Призматики</h3>
+        <p class="where">путь <code>research_конкуренты/Призматика_Казань/</code> в рабочем репо</p>
+        <ul class="maplist">
+          <li><span class="what"><code>_СВОД_разведки_…md</code></span><span class="for">полный свод по конкуренту Призматика: всё, что собрано по площадкам и из профильного чата</span></li>
+          <li><span class="what"><code>ПД_свод_канала_…md</code></span><span class="for">свод по самому каналу ПродокторОВ: механика, аукцион, ставки, риски</span></li>
+          <li><span class="what"><code>ПД_инструкция_топ1_…md</code></span><span class="for">полная пошаговая инструкция выхода в топ-1: разбалловка, чек-листы для врача и клиники, что НЕ делать под бан</span></li>
+          <li><span class="what"><code>СРАВНЕНИЕ_ПД_клиники_…md</code></span><span class="for">сравнение наших клиник с конкурентом по каналу <span class="nda-flag">NDA — внутри</span></span></li>
+        </ul>
+        <p class="map-note">На уровень выше: <code>research_конкуренты/_HANDOFF_конкурент-разведка_ПД.md</code> — мост между сессиями по всему направлению (статус, открытые вопросы, что дальше).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP: ЛК-ДОСТУП -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">ЛК-доступ · сбор данных</p>
+    <h2>Скрипты доступа в личный кабинет и сессия<span class="acc-badge gap">NDA</span></h2>
+    <div class="maprow">
+      <div class="mapcard lk">
+        <h3>Скрипты сбора</h3>
+        <p class="where">путь <code>Pulse_БИ/scripts/prodoctorov/</code></p>
+        <ul class="maplist">
+          <li><span class="what"><code>pd_login.py</code></span><span class="for">авторизация в личном кабинете площадки (сессия)</span></li>
+          <li><span class="what"><code>pd_collect.py</code></span><span class="for">сбор данных по кабинету / листингам</span></li>
+          <li><span class="what"><code>pd_screens.py</code></span><span class="for">снятие скринов экранов ЛК</span></li>
+          <li><span class="what"><code>pd_public_top.py</code></span><span class="for">публичный топ листинга (внешний мониторинг без кабинета)</span></li>
+          <li><span class="what"><code>pd_placements_probe.py</code></span><span class="for">проба спецразмещения / гео-скан позиций по разделам</span></li>
+        </ul>
+        <p class="map-note"><b>Сессия + ~29 скринов ЛК</b> хранятся в <code>vault</code> — закрытый контур, не в репо. <span class="nda-flag">NDA</span> Содержимое кабинета не цитируется и не выносится наружу.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP: СКИЛЛ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Скилл · автоматизация</p>
+    <h2>Инструмент под канал</h2>
+    <div class="maprow">
+      <div class="mapcard skill">
+        <h3>prodoctorov-channel</h3>
+        <p class="where">скилл проекта · <span class="acc-badge">в сборке</span></p>
+        <ul class="maplist">
+          <li><span class="what">prodoctorov-channel</span><span class="for">скилл по работе с каналом ПродокторОВ: сбор листингов, мониторинг ставок и отзывов, детектор платных участников. На стадии сборки.</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="map-note" style="margin-top:18px;">Все пути выше — внутренние, приведены как справка-навигатор, где искать. Это не внешние ссылки. NDA-материалы (сравнение наших клиник, сессия и скрины ЛК) живут в закрытом контуре и наружу не выносятся.</p>
+  </div>
+</section>
+
+</div><!-- /tab-map -->
+
 <footer class="sig">
   <div class="wrap">
     <b>Конкурент-разведка для внутреннего пользования</b> · бизнес-трекинг стоматологических клиник<br>
@@ -1023,7 +1189,7 @@ function showTab(id){
 // open tab from hash on load (#pd / #overview)
 (function(){
   var h=(location.hash||'').replace('#','');
-  if(h==='pd'||h==='overview'||h==='algo') showTab(h);
+  if(h==='pd'||h==='overview'||h==='algo'||h==='map') showTab(h);
 })();
 </script>
 
