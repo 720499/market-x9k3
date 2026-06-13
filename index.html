@@ -36,6 +36,17 @@
   .hero .stamp{display:inline-block; margin-top:22px; font-size:14px; color:var(--c-muted);
     border-left:2px solid var(--c-accent); padding:4px 0 4px 14px;}
 
+  /* tab navigation */
+  .tabnav{position:sticky; top:0; z-index:10; background:var(--c-bg); border-bottom:1px solid var(--c-rule);}
+  .tabnav button{appearance:none; background:none; border:none; cursor:pointer;
+    font-family:'PT Sans',sans-serif; font-weight:700; font-size:14px; letter-spacing:.01em;
+    color:var(--c-muted); padding:16px 4px; margin-right:28px; border-bottom:2.5px solid transparent;
+    transition:color .15s,border-color .15s; white-space:nowrap;}
+  .tabnav button:hover{color:var(--c-text);}
+  .tabnav button.active{color:var(--c-accent); border-bottom-color:var(--c-accent);}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+
   section{padding:42px 0; border-bottom:1px solid var(--c-hairline);}
   section:last-of-type{border-bottom:none;}
   .lead-p{font-size:17px; color:var(--c-body); margin:0 0 22px; max-width:730px;}
@@ -111,6 +122,37 @@
   .note-strong{margin-top:18px; font-size:15px; color:var(--c-muted);}
   .note-strong b{color:var(--c-text);}
 
+  /* ── ПродокторОВ dashboard helpers ── */
+  /* accumulator status badge on section headers */
+  .acc-badge{display:inline-block; font-family:'PT Sans',sans-serif; font-weight:700; font-size:11px;
+    letter-spacing:.05em; text-transform:uppercase; padding:3px 9px; border-radius:11px;
+    background:#EEF1F4; color:var(--c-muted); vertical-align:middle; margin-left:10px;}
+  .acc-badge.live{background:#EDF4EE; color:var(--c-green);}
+  .acc-badge.gap{background:var(--c-redbg); color:var(--c-red);}
+  /* detector / fact cards grid */
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:6px 0 4px;}
+  .factcard{border:1px solid var(--c-hairline); border-radius:6px; padding:16px 18px;}
+  .factcard h3{font-size:15px; margin:0 0 8px;}
+  .factcard p{font-size:14px; color:var(--c-body); margin:0;}
+  .factcard p.s{font-size:13px; color:var(--c-muted); margin:8px 0 0;}
+  /* numbered detector list with strong marker */
+  ul.detect{list-style:none; margin:6px 0 0; padding:0;}
+  ul.detect li{padding:13px 0; border-bottom:1px solid var(--c-hairline); display:flex; gap:14px; align-items:baseline;}
+  ul.detect li:last-child{border-bottom:none;}
+  ul.detect .marker{font-family:'PT Serif',serif; font-weight:700; color:var(--c-accent); font-size:14px;
+    min-width:26px; text-align:center;}
+  ul.detect .d{flex:1; font-size:15px;} ul.detect .d b{color:var(--c-text);}
+  /* pull quote inside neutral context */
+  .quote-block{border-left:3px solid var(--c-accent); padding:4px 0 4px 16px; margin:0 0 18px;
+    font-family:'PT Serif',serif; font-style:italic; font-size:17px; color:var(--c-text);}
+  /* fill / placeholder row for accumulator */
+  .fill-row{border:1px dashed var(--c-rule); border-radius:6px; padding:14px 16px; margin-top:14px;
+    font-size:14px; color:var(--c-muted);}
+  .fill-row b{color:var(--c-body);}
+  /* two-layer review split */
+  .review-split{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:6px;}
+  @media (max-width:600px){ .grid2,.review-split{grid-template-columns:1fr;} }
+
   footer.sig{padding:34px 0 60px; color:var(--c-muted); font-size:14px;}
   footer.sig b{color:var(--c-text); font-family:'PT Serif',serif;}
 
@@ -134,6 +176,16 @@
     <span class="stamp">У каждой цифры — пометка источника. Где это оценка, а не факт, так и написано.</span>
   </div>
 </header>
+
+<nav class="tabnav">
+  <div class="wrap" style="display:flex; gap:0;">
+    <button id="tab-btn-overview" class="active" onclick="showTab('overview')">Обзор: Призматика</button>
+    <button id="tab-btn-pd" onclick="showTab('pd')">Канал: ПродокторОВ</button>
+  </div>
+</nav>
+
+<!-- ════════ ПАНЕЛЬ 1: ОБЗОР ПРИЗМАТИКИ ════════ -->
+<div id="tab-overview" class="tab-panel active">
 
 <!-- 1. ПАСПОРТ -->
 <section>
@@ -322,12 +374,216 @@
   </div>
 </section>
 
+</div><!-- /tab-overview -->
+
+<!-- ════════ ПАНЕЛЬ 2: КАНАЛ ПРОДОКТОРОВ (накопитель) ════════ -->
+<div id="tab-pd" class="tab-panel">
+
+<!-- PD: интро -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Канал · накопитель данных</p>
+    <h2>ПродокторОВ: как устроен медпортал и как читать конкурентов внутри него</h2>
+    <p class="lead-p">Это рабочий дашборд-накопитель по каналу ПродокторОВ (площадка МедРокет). Разобрана механика рейтинга и аукциона, тактика «изнутри» (как ведёт канал маркетолог Флагмана) и детектор: как по внешним признакам понять, кто из конкурентов сейчас платит за позиции. Структура — под дозаполнение: ставки, листинги и динамика отзывов будут уточняться по мере мониторинга.</p>
+    <p class="srcnote">Источники: офиц. help.prodoctorov.ru + отраслевые, база знаний (кейсы Дентариза и Флагмана), профильный чат с тактикой ведения канала изнутри. Свод: 13 июня 2026.</p>
+  </div>
+</section>
+
+<!-- PD 1: МЕХАНИКА рейтинг vs позиция -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Механика</p>
+    <h2>Рейтинг ≠ позиция. Не путать<span class="acc-badge live">база</span></h2>
+    <p class="lead-p">Два разных механизма. Звёзды (рейтинг) купить нельзя — только отзывы. А вот позиция в списке на ~80% «покупается» косвенно через платные опции; сами звёзды весят лишь ~20%.</p>
+
+    <div class="grid2">
+      <div class="factcard">
+        <h3>Рейтинг (звёзды 0–5)</h3>
+        <p>Только из отзывов, купить нельзя. 50% клиника + 50% врачи. Влияют только авторизованные; подробный отзыв весит ×1.2–3.6; со временем устаревает (~6 мес вес падает).</p>
+      </div>
+      <div class="factcard">
+        <h3>Балльное ранжирование клиник</h3>
+        <p>С янв-2025, макс <b>730 баллов</b>: звёзды×30 (150) + онлайн-запись услуг (100) + онлайн-запись врачей (100) + автовыгрузка цен (100) + успешность записи ≥75% (100) + Клуб ПД (70) + запись по телефону (50) + доступность ≥15ч (50) + видеовизитка (10).</p>
+      </div>
+    </div>
+
+    <p class="note-strong" style="margin-top:20px;"><b>Ранжирование по УСЛУГАМ</b> (имплантация / брекеты — где деньги) считается не по баллам, а по иерархии: <b>топ-3 = спецразмещение (аукцион)</b> → онлайн-запись → телефон + цены (МедФлекс) → прочие. Первые 3 строки в денежных списках — всегда платный аукцион.</p>
+  </div>
+</section>
+
+<!-- PD 2: АУКЦИОН спецразмещения -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Аукцион спецразмещения</p>
+    <h2>3 места, аукцион второй цены, перебивка в 22:50<span class="acc-badge live">база</span></h2>
+    <p class="lead-p">Главный платный продукт. Блок «Спецразмещение» — максимум 3 места, на 1 сутки (00:00–24:00 МСК), с пометкой по 347-ФЗ. Механика — GSP / аукцион второй цены: три высшие ставки берут места, победитель платит ставку следующего за ним.</p>
+
+    <ul class="clean">
+      <li><span class="n">Подача</span><span class="t">До <b>23:00 МСК</b> на завтра (день-в-день нельзя). Есть галка «повторять ежедневно».</span></li>
+      <li><span class="n">Рекоменд. ставка</span><span class="t">= вчерашняя ставка 1-го места <b>+1%</b> → площадка естественно разгоняет цену.</span></li>
+      <li><span class="n">Тай-брейк</span><span class="t">При равных ставках выше встаёт тот, у кого выше рейтинг; карточка врача бьёт карточку клиники.</span></li>
+      <li><span class="n">Мин. ставка</span><span class="t">В оферте (раздел 11), публично не опубликована. <span class="acc-badge gap">пробел</span></span></li>
+    </ul>
+
+    <p class="eyebrow" style="margin-top:30px;">Ставки по разделам · Казань, март 2026</p>
+    <p class="lead-p">Из тактики ведения канала изнутри. Дешёвые разделы берут «для теста», дорогие — там, где сидит маржа (имплантация, ортопедия, ортодонтия).</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Раздел</th><th>Ставка / сутки</th><th>Комментарий</th></tr></thead>
+        <tbody>
+          <tr><td>Стом-услуги (общий)</td><td class="s-num">162–172 ₽</td><td>берут всегда — «копейки для теста, 10 дней ≈ 1700 ₽»</td></tr>
+          <tr><td>Хирург</td><td class="s-num">475 ₽</td><td>средний</td></tr>
+          <tr><td>Терапевт</td><td class="s-num">969 ₽</td><td>дорогой</td></tr>
+          <tr><td>Ортодонт</td><td class="s-num">1 307 ₽</td><td>дорогой раздел</td></tr>
+          <tr><td>Ортопед</td><td class="s-num">1 374 ₽</td><td>дорогой раздел</td></tr>
+          <tr><td>2-е место (ориентир)</td><td class="s-num">≈ 2 133 ₽</td><td>фикс 2000 не всегда выигрывает → ставить «рекомендованную»</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="srcnote">Ставки — снимок на март 2026, меняются день-ко-дню. Это ориентир порядка цен, не текущий прайс.</p>
+
+    <div class="ctx" style="margin-top:24px;">
+      <p class="eyebrow">Тайминг-фишка</p>
+      <p class="quote-block">Ставку правят в 22:50–22:55 МСК.</p>
+      <p>Аукцион считает позиции на завтра поздно вечером. Last-minute перебивка перед самым расчётом забирает позицию — поэтому ставку выставляют не утром, а почти в дедлайн (под будильник). Рутина перед выходными — <b>стоп на сб/вс</b> (звонков нет, бюджет не жгут).</p>
+    </div>
+  </div>
+</section>
+
+<!-- PD 3: ДЕТЕКТОР платных участников -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Детектор платных участников</p>
+    <h2>Как внешне понять, кто сейчас в аукционе<span class="acc-badge live">рабочий</span></h2>
+    <p class="lead-p">Наблюдаемые признаки при внешнем мониторинге листинга — без доступа к чужим кабинетам. Главный маркер один, остальные складываются в картину «живёт на ставке».</p>
+    <ul class="detect">
+      <li><span class="marker">1</span><span class="d"><b>Пометка «Спецразмещение»</b> — 100% маркер. Главный и однозначный.</span></li>
+      <li><span class="marker">2</span><span class="d">Позиция 1–3 при <b>низком рейтинге / малом числе отзывов</b> = почти наверняка ставка, а не заслуга.</span></li>
+      <li><span class="marker">3</span><span class="d"><b>Скачки позиции день-ко-дню</b> (переигровка ~01:00 МСК). Эпизодичность = ставит не каждый день.</span></li>
+      <li><span class="marker">4</span><span class="d">Бейджи онлайн-записи / «документы проверены» = подключено платное ПО.</span></li>
+      <li><span class="marker">5</span><span class="d">Бейдж «скидка за отзыв» = участие в программе сбора отзывов площадки.</span></li>
+      <li><span class="marker">6</span><span class="d"><b>Аномальный прирост отзывов</b> (всплески) = акции или накрутка.</span></li>
+    </ul>
+
+    <p class="eyebrow" style="margin-top:30px;">Что парсить ежедневно</p>
+    <p class="lead-p">После ~01:00 МСК (когда позиции переиграны), по денежным услугам Казани:</p>
+    <ul class="clean">
+      <li><span class="n">Листинги</span><span class="t">общий стом-список + услуговые (имплантация / брекеты / виниры).</span></li>
+      <li><span class="n">По топ-15</span><span class="t">позиция №, флаг «Спецразмещение», рейтинг + число отзывов (→ дельта/день = скорость накрутки), онлайн-запись, медали/бейджи.</span></li>
+      <li><span class="n">Производные</span><span class="t">кто держит спец <b>каждый день</b> vs эпизодически (= бюджет); дневной прирост отзывов; «высокая позиция при низком рейтинге» = живёт на ставке.</span></li>
+    </ul>
+    <p class="srcnote">⚠️ Листинги под антиботом → для регулярного сбора нужен headless-парсер (Playwright) + cron. Публичного API для разведки площадка не даёт.</p>
+  </div>
+</section>
+
+<!-- PD 4: ОТЗЫВЫ Призматики (2 пласта + SEO) -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Отзывы Призматики · SEO в отзывах</p>
+    <h2>Два пласта отзывов: витрина и живые<span class="acc-badge live">кейс</span></h2>
+    <p class="lead-p">У Призматики динамика 1470 → 1596 за май–июнь (~100+/мес против нормы 10–15). Машина сбора: скидка 300 ₽ + сервисный обзвон + QR. Сами отзывы делятся на два разных пласта.</p>
+
+    <div class="review-split">
+      <div class="card take">
+        <h3 style="color:var(--c-accent);">Пласт 1 — витрина клиники</h3>
+        <ul>
+          <li>Длинные, шаблонная открывашка «развёрнутый отзыв… 10 из 10».</li>
+          <li>Блок про сервис/атмосферу: «как салон, чай/кофе».</li>
+          <li>Вшитые ключи «имплантация Казань» + ФИО врача.</li>
+          <li>Финал-CTA «однозначно рекомендую».</li>
+          <li><b>Признаки копирайтинга/AI</b> — сама площадка называет это маркером заказного.</li>
+        </ul>
+      </div>
+      <div class="card beat">
+        <h3 style="color:var(--c-green);">Пласт 2 — карточки врачей</h3>
+        <ul>
+          <li>Короткие, живые.</li>
+          <li>Конкретные даты, бытовые детали.</li>
+          <li>Похожи на настоящие.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="note-strong" style="margin-top:22px;"><b>Ответы клиники</b> — тоже SEO: отвечают выборочно на весомые (имплантация), длинно, с CTA на возврат и гео-ключами в подписи (город + адрес).</p>
+    <p class="note-strong"><b>«Заёмные» врачи:</b> часть врачей Призматики мультиклиничны (отзывы под чужими клиниками, разные телефоны). При оценке силы клиники по сумме врачебных отзывов это надо вычитать.</p>
+  </div>
+</section>
+
+<!-- PD 5: ЦИФРЫ из БЗ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Цифры · кейсы из базы знаний</p>
+    <h2>Ориентиры по каналу: свои клиники vs конкурент<span class="acc-badge live">база</span></h2>
+    <p class="lead-p">Что даёт канал в реальных кейсах. ПД продаёт лиды по ~3.7% от стоимости услуги (факт ~1000–2500 ₽/запись, имплантация — верх коридора), платится только за успешные записи.</p>
+
+    <div class="kpis">
+      <div class="kpi">
+        <div class="big">~70 %</div>
+        <div class="lbl">конверсия лид → запись (А)</div>
+        <p class="meta">лучшая среди каналов клиники А</p>
+      </div>
+      <div class="kpi">
+        <div class="big">27–59 / мес</div>
+        <div class="lbl">лидов (А): без СП → пик с СП</div>
+        <p class="meta">бюджет ~100к/мес, балл 370/730</p>
+      </div>
+      <div class="kpi">
+        <div class="big">~2 000 ₽</div>
+        <div class="lbl">ставка/сутки на старте (Б)</div>
+        <p class="meta">старт платно с 01.03.26, правило выходных</p>
+      </div>
+      <div class="kpi">
+        <div class="big">~1 590</div>
+        <div class="lbl">отзывов у Призматики</div>
+        <p class="meta">ТОП-1 РТ, премия площадки 2025</p>
+      </div>
+    </div>
+    <p class="note-strong" style="margin-top:18px;"><b>Инсайт:</b> в одном из кейсов канал даёт ~20 лидов/мес при норме 60+ — то есть вдвое недогружен. Потолок по каналу выше текущего съёма.</p>
+    <p class="srcnote">А / Б — обезличенные кодовые обозначения клиник. Консультация бесплатная → нельзя подключить «силу отзыва» (нужна услуга с ценой ≥500 ₽) — отдельная развилка по каждой клинике.</p>
+  </div>
+</section>
+
+<!-- PD 6: накопитель — точки дозаполнения -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Дозаполнение</p>
+    <h2>Что добрать в накопитель</h2>
+    <p class="lead-p">Открытые пробелы и слоты под регулярные данные. По мере мониторинга строки заполняются фактом.</p>
+    <div class="fill-row"><b>Точная мин. ставка</b> по разделам (оферта, раздел 11) + min/max цена записи по Казани (ЛК / оферта). <span class="acc-badge gap">пробел</span></div>
+    <div class="fill-row"><b>Селекторы парсинга</b> листингов (антибот) — под headless-сбор. <span class="acc-badge gap">пробел</span></div>
+    <div class="fill-row"><b>Дневной снимок листинга</b> Казань по денежным услугам: кто держит спец, рейтинг+отзывы, дельта/день. <span class="acc-badge">слот · регулярно</span></div>
+    <div class="fill-row"><b>Динамика отзывов конкурентов</b> (прирост/нед) — детектор накрутки. <span class="acc-badge">слот · регулярно</span></div>
+  </div>
+</section>
+
+</div><!-- /tab-pd -->
+
 <footer class="sig">
   <div class="wrap">
     <b>Конкурент-разведка для внутреннего пользования</b> · бизнес-трекинг стоматологических клиник<br>
     Собрано по открытым данным площадок и публичным сообщениям их маркетолога в профильном чате на 13 июня 2026. Цифры с пометкой «оценка» — экспертная оценка, не факт. Счётчики отзывов могут отличаться на несколько штук от даты сбора. Не для публикации.
   </div>
 </footer>
+
+<script>
+function showTab(id){
+  var panels=document.querySelectorAll('.tab-panel');
+  for(var i=0;i<panels.length;i++) panels[i].classList.remove('active');
+  var btns=document.querySelectorAll('.tabnav button');
+  for(var j=0;j<btns.length;j++) btns[j].classList.remove('active');
+  var p=document.getElementById('tab-'+id);
+  var b=document.getElementById('tab-btn-'+id);
+  if(p) p.classList.add('active');
+  if(b) b.classList.add('active');
+  if(history.replaceState) history.replaceState(null,'','#'+id);
+  window.scrollTo(0,0);
+}
+// open tab from hash on load (#pd / #overview)
+(function(){
+  var h=(location.hash||'').replace('#','');
+  if(h==='pd'||h==='overview') showTab(h);
+})();
+</script>
 
 </body>
 </html>
