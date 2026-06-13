@@ -151,7 +151,28 @@
   .fill-row b{color:var(--c-body);}
   /* two-layer review split */
   .review-split{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:6px;}
-  @media (max-width:600px){ .grid2,.review-split{grid-template-columns:1fr;} }
+  /* risk list (red, against blind bet on the channel) */
+  ul.risks{list-style:none; margin:6px 0 0; padding:0;}
+  ul.risks li{padding:14px 0; border-bottom:1px solid var(--c-hairline);}
+  ul.risks li:last-child{border-bottom:none;}
+  ul.risks .rt{font-family:'PT Serif',serif; font-weight:700; color:var(--c-red); font-size:16px; margin:0 0 3px;}
+  ul.risks .rd{font-size:15px; color:var(--c-body); margin:0;} ul.risks .rd b{color:var(--c-text);}
+  /* two-battle cards for top-1 */
+  .battle{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:6px 0 4px;}
+  .battle .card h3{margin-bottom:8px;}
+  /* sources block */
+  .sources{border-top:2px solid var(--c-rule); margin-top:10px; padding-top:18px;}
+  .sources h3{font-size:15px; text-transform:uppercase; letter-spacing:.08em;
+    font-family:'PT Sans',sans-serif; color:var(--c-muted); margin:0 0 12px;}
+  ul.srclist{list-style:none; margin:0; padding:0; columns:1;}
+  ul.srclist li{padding:7px 0; border-bottom:1px solid var(--c-hairline); font-size:14px; line-height:1.5;}
+  ul.srclist li:last-child{border-bottom:none;}
+  ul.srclist .cat{font-family:'PT Sans',sans-serif; font-weight:700; color:var(--c-accent);
+    font-size:12px; text-transform:uppercase; letter-spacing:.05em; display:inline-block; min-width:104px; vertical-align:top;}
+  ul.srclist .lk{display:inline-block;}
+  ul.srclist a{font-size:14px;}
+  @media (max-width:600px){ .grid2,.review-split,.battle{grid-template-columns:1fr;}
+    ul.srclist .cat{display:block; min-width:0; margin-bottom:2px;} }
 
   footer.sig{padding:34px 0 60px; color:var(--c-muted); font-size:14px;}
   footer.sig b{color:var(--c-text); font-family:'PT Serif',serif;}
@@ -333,7 +354,7 @@
     <p class="pull">«В записи норм, в приход упала ппц» — их маркетолог, февраль 2026.</p>
     <p>Их сила — привлечение через рейтинги и карточки. Их слабость — конверсия «запись → приём» и удержание. То есть машина отлично наливает заявки и записи, но дальше по воронке течёт.</p>
     <p>Ручной стек напоминаний (ТГ-бот + МАКС + СМС + обзвон + «Забота»/loyalmed на Айденте) ломается из-за блокировок МАКС и WhatsApp. Сами ищут систему лояльности вне мессенджеров (loyme.io). Свой SMM-отдел при этом подрабатывает консалтингом — то есть фокус частично уходит вовне.</p>
-    <p><b>Важная параллель:</b> это то же самое узкое место, что и у клиник Владимира (Дентариз). Никто на рынке пока не закрыл «доходимость + удержание» системно. Кто закроет первым — забирает разницу на том же входящем потоке. Для нас это не угроза, а карта, где у сильного конкурента дыра.</p>
+    <p><b>Важная параллель:</b> это то же самое узкое место, что и у клиник, которые я веду (клиника А). Никто на рынке пока не закрыл «доходимость + удержание» системно. Кто закроет первым — забирает разницу на том же входящем потоке. Для нас это не угроза, а карта, где у сильного конкурента дыра.</p>
   </div>
 </section>
 
@@ -384,8 +405,8 @@
   <div class="wrap">
     <p class="eyebrow">Канал · накопитель данных</p>
     <h2>ПродокторОВ: как устроен медпортал и как читать конкурентов внутри него</h2>
-    <p class="lead-p">Это рабочий дашборд-накопитель по каналу ПродокторОВ (площадка МедРокет). Разобрана механика рейтинга и аукциона, тактика «изнутри» (как ведёт канал маркетолог Флагмана) и детектор: как по внешним признакам понять, кто из конкурентов сейчас платит за позиции. Структура — под дозаполнение: ставки, листинги и динамика отзывов будут уточняться по мере мониторинга.</p>
-    <p class="srcnote">Источники: офиц. help.prodoctorov.ru + отраслевые, база знаний (кейсы Дентариза и Флагмана), профильный чат с тактикой ведения канала изнутри. Свод: 13 июня 2026.</p>
+    <p class="lead-p">Это рабочий дашборд-накопитель по каналу ПродокторОВ (площадка МедРокет). Разобрана механика рейтинга и аукциона, тактика «изнутри» (как ведёт канал маркетолог одной из клиник) и детектор: как по внешним признакам понять, кто из конкурентов сейчас платит за позиции. Структура — под дозаполнение: ставки, листинги и динамика отзывов будут уточняться по мере мониторинга.</p>
+    <p class="srcnote">Источники: офиц. help.prodoctorov.ru + отраслевые, база знаний (кейсы клиник А и Б), профильный чат с тактикой ведения канала изнутри. Свод: 13 июня 2026.</p>
   </div>
 </section>
 
@@ -425,22 +446,53 @@
       <li><span class="n">Мин. ставка</span><span class="t">В оферте (раздел 11), публично не опубликована. <span class="acc-badge gap">пробел</span></span></li>
     </ul>
 
-    <p class="eyebrow" style="margin-top:30px;">Ставки по разделам · Казань, март 2026</p>
-    <p class="lead-p">Из тактики ведения канала изнутри. Дешёвые разделы берут «для теста», дорогие — там, где сидит маржа (имплантация, ортопедия, ортодонтия).</p>
+    <div class="danger" style="margin-top:30px;">
+      <p class="eyebrow">Исправлено по первоисточникам · 13.06.2026</p>
+      <p class="pull">Три разные цифры, которые легко спутать: рекомендованная мин. ставка ≠ боевая ставка за позицию ≠ стоимость записи.</p>
+      <p style="margin-bottom:0;">Прежняя версия выдавала «162 ₽» и «2 133 ₽» как ставки за место — это занижало боевую ставку втрое-восьмикратно. Сверено по внутреннему маркетинг-чату клиники и транскриптам планёрок клиники А: <b>162 ₽ — это рекомендованный минимум в самом дешёвом разделе</b>, а <b>2 133 ₽ — стоимость одной записи, а не ставка за позицию.</b></p>
+    </div>
+
+    <p class="eyebrow" style="margin-top:30px;">1 · Рекомендованная мин. ставка по разделам · Казань, март 2026</p>
+    <p class="lead-p">Что площадка предлагает как стартовый минимум. Дешёвые разделы берут «для теста», дорогие — там, где сидит маржа (имплантация, ортопедия, ортодонтия). Это нижняя планка входа, а не цена удержания топ-3.</p>
     <div class="tablewrap">
       <table>
-        <thead><tr><th>Раздел</th><th>Ставка / сутки</th><th>Комментарий</th></tr></thead>
+        <thead><tr><th>Раздел</th><th>Реком. мин. / сутки</th><th>Комментарий</th></tr></thead>
         <tbody>
-          <tr><td>Стом-услуги (общий)</td><td class="s-num">162–172 ₽</td><td>берут всегда — «копейки для теста, 10 дней ≈ 1700 ₽»</td></tr>
+          <tr><td>Стом-услуги (общий)</td><td class="s-num">162–172 ₽</td><td>самый дешёвый общий раздел — «копейки для теста»</td></tr>
           <tr><td>Хирург</td><td class="s-num">475 ₽</td><td>средний</td></tr>
           <tr><td>Терапевт</td><td class="s-num">969 ₽</td><td>дорогой</td></tr>
           <tr><td>Ортодонт</td><td class="s-num">1 307 ₽</td><td>дорогой раздел</td></tr>
           <tr><td>Ортопед</td><td class="s-num">1 374 ₽</td><td>дорогой раздел</td></tr>
-          <tr><td>2-е место (ориентир)</td><td class="s-num">≈ 2 133 ₽</td><td>фикс 2000 не всегда выигрывает → ставить «рекомендованную»</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="srcnote">Ставки — снимок на март 2026, меняются день-ко-дню. Это ориентир порядка цен, не текущий прайс.</p>
+
+    <p class="eyebrow" style="margin-top:30px;">2 · Боевая ставка за позицию · реальный аукцион</p>
+    <p class="lead-p">Сколько по факту платят за удержание места в аукционе (за сутки). Это и есть рабочая цена топ-3 — кратно выше рекомендованного минимума, потому что аукцион разогрет.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Кто</th><th>Боевая ставка / сутки</th><th>Контекст</th></tr></thead>
+        <tbody>
+          <tr><td>Клиника Б, пик</td><td class="s-num">3 700 ₽</td><td>пик весной, затем просадка до ~2 200 (конкурент вышел)</td></tr>
+          <tr><td>Клиника А, апр-26</td><td class="s-num">2 700 → 3 384 ₽</td><td>разгон от старта к «рекомендуемой», лимит до 5 000 ₽</td></tr>
+          <tr><td>По врачу (имплантолог)</td><td class="s-num">1 670–2 500 ₽</td><td>отдельная карточка врача в денежном разделе</td></tr>
+          <tr><td>Динамика за год</td><td class="s-num">×16–20</td><td>март-25: 10–60 ₽ → апр-26: 3 200 ₽+ (аукцион разогрелся)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="eyebrow" style="margin-top:30px;">3 · Стоимость записи (НЕ ставка за позицию)</p>
+    <p class="lead-p">Площадка берёт ~3.7% от стоимости услуги, платится только за успешные записи. Это отдельная экономика от ставки за место.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Показатель</th><th>Значение</th><th>Источник</th></tr></thead>
+        <tbody>
+          <tr><td>Запись (стом, общий коридор)</td><td class="s-num">1 000–2 500 ₽</td><td>имплантация — верх коридора</td></tr>
+          <tr><td>Запись (низкий регион-кейс)</td><td class="s-num">~160 ₽</td><td>публичный кейс эксперта канала</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="srcnote">Ставки и стоимость записи — снимок на весну 2026, меняются день-ко-дню. Ориентир порядка цен, не текущий прайс. Расход у клиники-кейса: прогноз ~60к/мес, факт марта ~29к (стопали выходные); два счёта — лицензионный (ПО + записи) и рекламный (спец + баннеры).</p>
 
     <div class="ctx" style="margin-top:24px;">
       <p class="eyebrow">Тайминг-фишка</p>
@@ -540,6 +592,123 @@
     </div>
     <p class="note-strong" style="margin-top:18px;"><b>Инсайт:</b> в одном из кейсов канал даёт ~20 лидов/мес при норме 60+ — то есть вдвое недогружен. Потолок по каналу выше текущего съёма.</p>
     <p class="srcnote">А / Б — обезличенные кодовые обозначения клиник. Консультация бесплатная → нельзя подключить «силу отзыва» (нужна услуга с ценой ≥500 ₽) — отдельная развилка по каждой клинике.</p>
+  </div>
+</section>
+
+<!-- PD 5b: ТРУДНОСТИ / РИСКИ ПД -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Трудности и риски канала</p>
+    <h2>Почему слепая ставка на ПД опасна<span class="acc-badge live">база</span></h2>
+    <p class="lead-p">Обратная сторона площадки — рычаги против того, чтобы вешать загрузку клиники только на неё. Эти риски одинаково работают и против конкурента, и против своих клиник.</p>
+    <ul class="risks">
+      <li>
+        <p class="rt">Карательная модерация — главная боль</p>
+        <p class="rd">Фейк-отзыв от конкурента (заказывается на фрилансе за ~1 000 ₽) → жалоба → <b>обнуление рейтинга и блок: клиника на 3 года, врач на 1 год</b>, плюс баннер «покупала отзывы». Площадка платит жалобщику до 5 000 ₽ — это прямо стимулирует доносы конкурентов и уволенных сотрудников. Эксперт канала называет площадку «суд, следствие и карательный орган в одном».</p>
+      </li>
+      <li>
+        <p class="rt">30–35% отзывов отклоняются</p>
+        <p class="rd">Даже реальные — по 19 причинам. По данным РБК, за 2025 отклонено более 350 тыс. Теряются настоящие положительные отзывы.</p>
+      </li>
+      <li>
+        <p class="rt">Прецедент-суд (Москва, май-2026)</p>
+        <p class="rd">Клиника заказала ~1 500 фейк-отзывов → рейтинг обнулён → суд в восстановлении <b>отказал</b>. Откатить бан нельзя.</p>
+      </li>
+      <li>
+        <p class="rt">Ловушка зависимости</p>
+        <p class="rd">Кейс Екатеринбурга: 45% записей идут через площадку → комиссию подняли до 32% → −12% маржи, а отказаться уже нельзя. Красный флаг — доля агрегатора <b>выше 40%</b> записей.</p>
+      </li>
+      <li>
+        <p class="rt">Холодные лиды</p>
+        <p class="rd">Кейс Москвы: 30% лидов с площадки не дошли до клиники, переплата ~150к за 4 месяца.</p>
+      </li>
+      <li>
+        <p class="rt">Обесценивание бренда клиники</p>
+        <p class="rd">Логика площадки — «пациент выбирает врача» → клиника превращается в «бизнес-центр, где врачи арендуют». Усиливает риск увода базы при уходе врача.</p>
+      </li>
+      <li>
+        <p class="rt">Профиль врача и реклама конкурентов</p>
+        <p class="rd">Нельзя удалить профиль своего врача (только сам врач через поддержку). На твоей карточке крутится <b>реклама конкурентов</b> — убирается только в платном ПО уровня «Профи».</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- PD 5c: КАК ВЫЙТИ В ТОП-1 -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Как выйти в топ-1</p>
+    <h2>Две битвы одновременно: баллы и аукцион<span class="acc-badge live">выжимка</span></h2>
+    <p class="lead-p">Краткая выжимка по выходу в топ-1 с нуля. Главное — не путать два механизма: общий список идёт по баллам, а денежные списки по услугам — только через платный аукцион. Топ-1 «по городу» = выиграть обе битвы сразу.</p>
+
+    <div class="battle">
+      <div class="card take">
+        <h3>Битва 1 — баллы (общий список)</h3>
+        <ul>
+          <li>Клиника собирает до <b>730 баллов</b>, врач — до <b>770</b>.</li>
+          <li>Фундамент: автовыгрузка цен через МедФлекс + онлайн-запись услуг и врачей + успешность записи + телефон + аптайм + Клуб + видеовизитка.</li>
+          <li>Звёзды (до 150) — поток отзывов через «Силу отзыва» + постобзвон, постоянно, не разово.</li>
+          <li>У врача критичны первые 10 отзывов и свободные ячейки на 14 дней (ноль ячеек = 0 баллов).</li>
+        </ul>
+      </div>
+      <div class="card beat">
+        <h3>Битва 2 — аукцион (денежные услуги)</h3>
+        <ul>
+          <li>Топ-3 по имплантации / брекетам / винирам — <b>только спецразмещение</b>, баллы тут не работают.</li>
+          <li>Аукцион второй цены, галка «повторять ежедневно», правка ставки ~22:50 МСК, стоп на сб/вс.</li>
+          <li>В аукцион пускать врача, работающего <b>только у вас</b> (иначе лид утекает в чужую клинику через карточку).</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="note-strong" style="margin-top:18px;"><b>«Сила отзыва»:</b> QR-полиграфия в клинике → пациент сканирует → отзыв → промокод 300 ₽ скидки; за N промокодов клинике дают платное ПО бесплатно на 90 дней. На рейтинг влияют только авторизованные подробные отзывы.</p>
+    <p class="srcnote">Это сжатая версия. Полная пошаговая инструкция (регистрация, разбалловка клиника/врач, чек-листы топ-1 отдельно для врача и для клиники, что НЕ делать под бан) — в файле <code>ПД_инструкция_топ1_2026-06-13.md</code> в этом же каталоге разведки.</p>
+  </div>
+</section>
+
+<!-- PD 5d: ИСТОЧНИКИ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Источники</p>
+    <h2>Откуда данные по каналу</h2>
+    <p class="lead-p">Открытые и проверяемые источники. Закрытые (внутренний маркетинг-чат клиники, личные контакты) указаны без раскрытия — только как тип источника.</p>
+    <div class="sources">
+      <h3>Официальные · help.prodoctorov.ru</h3>
+      <ul class="srclist">
+        <li><span class="cat">Аукцион</span><span class="lk"><a href="https://help.prodoctorov.ru/specrazmeshchenie" target="_blank" rel="noopener">help.prodoctorov.ru/specrazmeshchenie</a> — спецразмещение (GSP)</span></li>
+        <li><span class="cat">Баллы клиника</span><span class="lk"><a href="https://help.prodoctorov.ru/pravilaranzhirovaniya" target="_blank" rel="noopener">help.prodoctorov.ru/pravilaranzhirovaniya</a> — 730 баллов</span></li>
+        <li><span class="cat">Баллы врач</span><span class="lk"><a href="https://help.prodoctorov.ru/ballnoe-ranzhirovanie" target="_blank" rel="noopener">help.prodoctorov.ru/ballnoe-ranzhirovanie</a> — 770 баллов</span></li>
+        <li><span class="cat">Отзывы</span><span class="lk"><a href="https://help.prodoctorov.ru/sila-otzyva" target="_blank" rel="noopener">help.prodoctorov.ru/sila-otzyva</a> — «Сила отзыва»</span></li>
+        <li><span class="cat">Регистрация</span><span class="lk"><a href="https://help.prodoctorov.ru/kak-zaregistrirovat-svoyu-kliniku" target="_blank" rel="noopener">help.prodoctorov.ru/kak-zaregistrirovat-svoyu-kliniku</a></span></li>
+        <li><span class="cat">Клуб ПД</span><span class="lk"><a href="https://club.prodoctorov.ru/" target="_blank" rel="noopener">club.prodoctorov.ru</a></span></li>
+      </ul>
+    </div>
+    <div class="sources">
+      <h3>Трудности и прецеденты</h3>
+      <ul class="srclist">
+        <li><span class="cat">РБК</span><span class="lk"><a href="https://companies.rbc.ru/news/5ayDxREK5r/" target="_blank" rel="noopener">companies.rbc.ru</a> — модерация, &gt;350к отклонённых отзывов</span></li>
+        <li><span class="cat">Коммерсантъ</span><span class="lk"><a href="https://www.kommersant.ru/doc/8651655" target="_blank" rel="noopener">kommersant.ru/doc/8651655</a> — суд об обнулении рейтинга (Москва)</span></li>
+        <li><span class="cat">Ловушка</span><span class="lk"><a href="https://medbusiness.space/" target="_blank" rel="noopener">medbusiness.space</a> — зависимость от агрегатора, комиссия</span></li>
+        <li><span class="cat">Модерация</span><span class="lk"><a href="https://www.cossa.ru/special/orm/281051/" target="_blank" rel="noopener">cossa.ru/special/orm/281051</a></span></li>
+      </ul>
+    </div>
+    <div class="sources">
+      <h3>Эксперты и обновления (Telegram)</h3>
+      <ul class="srclist">
+        <li><span class="cat">Эксперт</span><span class="lk"><a href="https://t.me/kiyaeve" target="_blank" rel="noopener">@kiyaeve</a> — трудности и ставки канала, кейсы банов</span></li>
+        <li><span class="cat">Эксперт</span><span class="lk"><a href="https://t.me/stomatolog_marketing" target="_blank" rel="noopener">@stomatolog_marketing</a> — «выкрутить канал на максимум»</span></li>
+        <li><span class="cat">Площадка</span><span class="lk"><a href="https://t.me/medroket" target="_blank" rel="noopener">@medroket</a> — офиц. канал МедРокет: алгоритм и аукцион</span></li>
+      </ul>
+    </div>
+    <div class="sources">
+      <h3>Кейсы</h3>
+      <ul class="srclist">
+        <li><span class="cat">vc.ru</span><span class="lk"><a href="https://vc.ru/" target="_blank" rel="noopener">vc.ru</a> — публичные кейсы продвижения на медпорталах</span></li>
+        <li><span class="cat">Дзен</span><span class="lk"><a href="https://dzen.ru/a/aGaN4JSAdBnyfN9Z" target="_blank" rel="noopener">dzen.ru/a/aGaN4JSAdBnyfN9Z</a></span></li>
+        <li><span class="cat">Кейс</span><span class="lk"><a href="https://tck-b.ru/cases/dentistry/stomstart/" target="_blank" rel="noopener">tck-b.ru — кейс стоматологии</a></span></li>
+      </ul>
+    </div>
+    <p class="srcnote" style="margin-top:16px;">Тактика «изнутри» (ставки, тайминг 22:50, правило выходных) — внутренний источник: маркетинг-чат клиники. Реквизиты канала, личные контакты и id чата не раскрываются. Клиники, которые я веду, обезличены кодами А / Б.</p>
   </div>
 </section>
 
